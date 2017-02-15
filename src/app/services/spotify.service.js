@@ -9,13 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
 var SpotifyService = (function () {
-    function SpotifyService() {
+    function SpotifyService(_http) {
+        this._http = _http;
     }
+    SpotifyService.prototype.searchMusic = function (str, type) {
+        if (type === void 0) { type = "artist"; }
+        this.searchUrl = 'https://api.spotify.com/v1/search?query=' + str + '&offset=0&limit=20&type=' + type + '&market=US';
+        return this._http.get(this.searchUrl).map(function (res) { return res.json(); });
+    };
     SpotifyService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], SpotifyService);
     return SpotifyService;
 }());
