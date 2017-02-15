@@ -9,26 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var spotify_service_1 = require('../../services/spotify.service');
-var SearchComponent = (function () {
-    function SearchComponent(_spotifyService) {
+var ArtistComponent = (function () {
+    function ArtistComponent(_spotifyService, _route) {
         this._spotifyService = _spotifyService;
+        this._route = _route;
     }
-    SearchComponent.prototype.searchMusic = function () {
+    ArtistComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._spotifyService.searchMusic(this.searchStr).subscribe(function (res) {
-            _this.searchRes = res.artists.items;
+        this._route.params
+            .map(function (params) { return params['id']; })
+            .subscribe(function (id) {
+            _this._spotifyService.getArtist(id)
+                .subscribe(function (artist) {
+                _this.artist = artist;
+            });
         });
     };
-    SearchComponent = __decorate([
+    ArtistComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'search',
-            templateUrl: 'search.component.html'
+            selector: 'artist',
+            templateUrl: 'artist.component.html',
+            providers: [spotify_service_1.SpotifyService]
         }), 
-        __metadata('design:paramtypes', [spotify_service_1.SpotifyService])
-    ], SearchComponent);
-    return SearchComponent;
+        __metadata('design:paramtypes', [spotify_service_1.SpotifyService, router_1.ActivatedRoute])
+    ], ArtistComponent);
+    return ArtistComponent;
 }());
-exports.SearchComponent = SearchComponent;
-//# sourceMappingURL=search.component.js.map
+exports.ArtistComponent = ArtistComponent;
+//# sourceMappingURL=artist.component.js.map

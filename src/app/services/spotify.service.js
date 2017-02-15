@@ -14,11 +14,19 @@ require('rxjs/add/operator/map');
 var SpotifyService = (function () {
     function SpotifyService(_http) {
         this._http = _http;
+        this.client_id = '4d79b629d00345fbb67179676a110fb8';
+        this.client_secret = '9fea1db02cd8461eb7ab62ffe43d8859';
     }
     SpotifyService.prototype.searchMusic = function (str, type) {
         if (type === void 0) { type = "artist"; }
         this.searchUrl = 'https://api.spotify.com/v1/search?query=' + str + '&offset=0&limit=20&type=' + type + '&market=US';
-        return this._http.get(this.searchUrl).map(function (res) { return res.json(); });
+        return this._http.get(this.searchUrl)
+            .map(function (res) { return res.json(); });
+    };
+    SpotifyService.prototype.getArtist = function (id) {
+        this.artistUrl = 'https://api.spotify.com/artists/' + id;
+        return this._http.get(this.artistUrl)
+            .map(function (res) { return res.json(); });
     };
     SpotifyService = __decorate([
         core_1.Injectable(), 
