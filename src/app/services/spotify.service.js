@@ -9,18 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var NavbarComponent = (function () {
-    function NavbarComponent() {
+require('rxjs/add/operator/map');
+var SpotifyService = (function () {
+    function SpotifyService() {
     }
-    NavbarComponent = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'navbar',
-            templateUrl: 'navbar.component.html'
-        }), 
+    SpotifyService = __decorate([
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], NavbarComponent);
-    return NavbarComponent;
+    ], SpotifyService);
+    return SpotifyService;
 }());
-exports.NavbarComponent = NavbarComponent;
-//# sourceMappingURL=navbar.component.js.map
+exports.SpotifyService = SpotifyService;
+//# sourceMappingURL=spotify.service.js.map

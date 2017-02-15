@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
 
 @Component({
+  moduleId: module.id,
   selector: 'search',
-  template: 'search.component.html'
+  templateUrl: 'search.component.html'
 })
-export class SearchComponent  { }
+export class SearchComponent  {
+  searchStr: string;
+
+  searchMusic(){
+    console.log(this.searchStr);
+  }
+}

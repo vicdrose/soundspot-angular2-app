@@ -12,10 +12,14 @@ var core_1 = require('@angular/core');
 var SearchComponent = (function () {
     function SearchComponent() {
     }
+    SearchComponent.prototype.searchMusic = function () {
+        console.log(this.searchStr);
+    };
     SearchComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'search',
-            template: 'search.component.html'
+            templateUrl: 'search.component.html'
         }), 
         __metadata('design:paramtypes', [])
     ], SearchComponent);
